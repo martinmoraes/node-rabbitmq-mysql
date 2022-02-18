@@ -42,8 +42,8 @@ Pense no desafio como uma oportunidade de mostrar todo o seu conhecimento. E fa�
 
 Uma aplicação em Node.js com a implementação que consome as mensagens das filas utilizadas pela api. Ao receber as mensagens da fila a aplicação deve validar os dados no banco de dados com as devidas regras: 
 
- - **Cadastro não existente no banco de dados**: Inserir os dados do usuário no bando de dados
- - **Cadastro existente no banco de dados**: Atualizar os dados do usuário no bando de dados
+ - **Cadastro não existente no banco de dados**: Inserir os dados do usuário no banco de dados
+ - **Cadastro existente no banco de dados**: Atualizar os dados do usuário no banco de dados
  - **Cancelamento existente no banco de dados**: Atualizar o status do usuário
  - **Cancelamento não existente no banco de dados**: mover a mensagem para uma [fila morta](https://en.wikipedia.org/wiki/Dead_letter_queue)
 
