@@ -47,6 +47,11 @@ Uma aplicação em Node.js com a implementação que consome as mensagens das fi
  - **Cancelamento existente no banco de dados**: Atualizar o status do usuário
  - **Cancelamento não existente no banco de dados**: mover a mensagem para uma [fila morta](https://en.wikipedia.org/wiki/Dead_letter_queue)
 
+### MySQL
+
+Se sinta a vontade para criar a própria estrutura de dados para ser utilizada nessa solução só pedimos que todas as operções feitas no banco de dados pela aplicação sejam feitas no formato [raw query](https://sequelize.org/v7/manual/raw-queries.html), este item é obrigatório. 
+
+
 ### Ganha mais pontos se tiver:
 
 - Logs utilizando o [ELK](https://www.elastic.co/what-is/elk-stack)
