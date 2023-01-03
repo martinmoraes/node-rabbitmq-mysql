@@ -3,7 +3,7 @@
 # Skeelo Recrutamento
 
 ---
-![JPG](https://pbs.twimg.com/profile_images/1189989686078562306/HqtcTyhQ_400x400.jpg)
+![JPG](https://app.skeelo.com/conheca-o-skeelo/img/logo-primary.svg)
 
 
 ## Bem vindo
