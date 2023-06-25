@@ -12,15 +12,13 @@ services:
   mysql:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: your_root_password
-      MYSQL_DATABASE: your_database
-      MYSQL_USER: your_user
-      MYSQL_PASSWORD: your_password
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: skeelo
+      MYSQL_USER: skeelo
+      MYSQL_PASSWORD: skeelo
     ports:
       - "3306:3306"  
     volumes:
-      - mysql_data:/var/lib/mysql
-
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
 volumes:
   rabbitmq_data:
-  mysql_data:
