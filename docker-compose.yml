@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   
+      - "15672:15672" 
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: skeelo
+      MYSQL_USER: skeelo
+      MYSQL_PASSWORD: skeelo
+    ports:
+      - "3306:3306"  
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+volumes:
+  rabbitmq_data:
