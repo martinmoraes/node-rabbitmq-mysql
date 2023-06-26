@@ -3,6 +3,10 @@ version: '3'
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     ports:
       - "5672:5672"   
       - "15672:15672" 
@@ -11,6 +15,7 @@ services:
 
   mysql:
     image: mysql:8.0
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: skeelo
@@ -28,12 +33,29 @@ services:
     depends_on:
       - mysql
       - rabbitmq
+    command: ["./wait-for-it.sh", "-t", "60000", "rabbitmq:5672", "--", "npm", "run", "start:prod"]
     environment:
-      - LOG_DIR: /log
-      - MYSQL_HOST: mysql
-      - MYSQL_DATABASE: skeelo
-      - MYSQL_USER: skeelo
-      - MYSQL_PASSWORD: skeelo
-      - AMQP_HOST: amqp://rabbitmq
+      NODE_ENV: production
+      LOG_DIR: /log
+      MYSQL_HOST: mysql
+      MYSQL_DATABASE: skeelo
+      MYSQL_USER: skeelo
+      MYSQL_PASSWORD: skeelo
+      AMQP_HOST: amqp://rabbitmq
+
+  api-user-app:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    command: ["./wait-for-it.sh", "-t", "60000", "rabbitmq:5672", "--", "npm", "run", "start:prod"]
+    environment:
+      NODE_ENV: production
+      HTTP_PORT: 3000
+      LOG_DIR: /log
+      AMQP_HOST: amqp://rabbitmq
+    ports:
+      - "3000:3000"
 volumes:
   rabbitmq_data:

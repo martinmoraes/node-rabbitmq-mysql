@@ -27,6 +27,10 @@ class UserController {
       );
       await userCancelService.execute(payloadReceived, userId);
     });
+
+    this.httpAPP.get('/ping', async (request, response) => {
+      response.send('pong');
+    });
   }
 
   sendMessage(channel) {
