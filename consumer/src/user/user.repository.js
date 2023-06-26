@@ -8,7 +8,7 @@ const SELECT_USER_BY_ID = 'SELECT * FROM skeelo.user WHERE id = :id;';
 const UPDATE_USER_BY_ID = `UPDATE skeelo.user SET name = :name, email = :email, fone = :fone, updatedAt = :updatedAt 
                             WHERE id = :id;`;
 
-const CANCELLED_USER_BY_ID = `UPDATE skeelo.user SET status = 'Cancelled', updatedAt = :updatedAt 
+const STATUS_USER_BY_ID = `UPDATE skeelo.user SET status = :status, updatedAt = :updatedAt 
                             WHERE id = :id;`;
 
 const INSER_USER = `INSERT INTO skeelo.user (name, email, fone)
@@ -44,9 +44,9 @@ class UserRepository {
     return { affectedRows: updatResult[1] };
   }
 
-  async cancelById(replacements) {
+  async setStatusById(replacements) {
     replacements.updatedAt = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const updatResult = await executeQuery(CANCELLED_USER_BY_ID, {
+    const updatResult = await executeQuery(STATUS_USER_BY_ID, {
       replacements,
       type: Sequelize.QueryTypes.UPDATE,
     });

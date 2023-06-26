@@ -1,12 +1,12 @@
 require('dotenv').config();
 const { UserRepository, userResultFind, userDTOWithID, userDTOWithoutID } = require('./mock_user');
-const { UserUpsertService } = require('../user_upsert.service');
+const { UserRegisterService } = require('../user_register.service');
 
 describe('UpSertUserService', () => {
   let upsertUserService;
 
   beforeEach(() => {
-    upsertUserService = new UserUpsertService(UserRepository);
+    upsertUserService = new UserRegisterService(UserRepository);
     jest.clearAllMocks();
   });
 
@@ -24,7 +24,7 @@ describe('UpSertUserService', () => {
       expect(spyUpdate).not.toHaveBeenCalled();
     });
 
-    it('user already registered', async () => {
+    it('with user already registered', async () => {
       const spyFindByEmail = jest.spyOn(UserRepository, 'findByEmail').mockResolvedValue(userResultFind);
       const spyInser = jest.spyOn(UserRepository, 'insert');
       const spyUpdate = jest.spyOn(UserRepository, 'updateById').mockResolvedValue({ affectedRows: 1 });
@@ -37,9 +37,9 @@ describe('UpSertUserService', () => {
       expect(spyUpdate).not.toHaveBeenCalled();
     });
 
-    it('system error', async () => {
+    it('with system error', async () => {
       jest.spyOn(UserRepository, 'findByEmail').mockImplementation(() => {
-        throw new Error('Exceção simulada');
+        throw new Error('mock exception');
       });
 
       const result = await upsertUserService.execute(userDTOWithoutID);
@@ -60,7 +60,7 @@ describe('UpSertUserService', () => {
       expect(spyUpdate).toHaveBeenCalled();
     });
 
-    it('different id`s', async () => {
+    it('with different id`s', async () => {
       const spyFindByEmail = jest.spyOn(UserRepository, 'findByEmail').mockResolvedValue(userResultFind);
       const spyUpdate = jest.spyOn(UserRepository, 'updateById');
 
@@ -71,9 +71,9 @@ describe('UpSertUserService', () => {
       expect(spyUpdate).not.toHaveBeenCalled();
     });
 
-    it('system error', async () => {
+    it('with system error', async () => {
       jest.spyOn(UserRepository, 'updateById').mockImplementation(() => {
-        throw new Error('Exceção simulada');
+        throw new Error('mock exception');
       });
 
       const result = await upsertUserService.execute(userDTOWithoutID);

@@ -1,6 +1,6 @@
 const { logger } = require('../infra/logger');
 
-class UserUpsertService {
+class UserRegisterService {
   constructor(userRepository) {
     this.userRepository = userRepository;
   }
@@ -45,4 +45,4 @@ class UserUpsertService {
   }
 }
 
-module.exports = { UserUpsertService };
+module.exports = { UserRegisterService };

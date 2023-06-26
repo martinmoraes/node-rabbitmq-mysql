@@ -1,5 +1,5 @@
 const amqp = require('amqplib');
-const { logger } = require('../logger');
+const { logger } = require('./logger');
 const { AmqpQueueName } = require('./amqpQueueNames');
 
 class AmqpServer {

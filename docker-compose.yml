@@ -20,5 +20,20 @@ services:
       - "3306:3306"  
     volumes:
       - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+
+  consumer-user-app:
+    build:
+      context: ./consumer
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+      - rabbitmq
+    environment:
+      - LOG_DIR: /log
+      - MYSQL_HOST: mysql
+      - MYSQL_DATABASE: skeelo
+      - MYSQL_USER: skeelo
+      - MYSQL_PASSWORD: skeelo
+      - AMQP_HOST: amqp://rabbitmq
 volumes:
   rabbitmq_data:

@@ -3,7 +3,7 @@ const UserRepository = {
   updateById: jest.fn(),
   insert: jest.fn(),
   findById: jest.fn(),
-  cancelById: jest.fn(),
+  setStatusById: jest.fn(),
 };
 
 const executeQuery = {

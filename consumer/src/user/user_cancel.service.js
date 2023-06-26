@@ -1,20 +1,21 @@
 const { logger } = require('../infra/logger');
+const { AmqpQueueName } = require('../infra/amqpQueueNames');
 
-class UserDeleteService {
+class UserCancelService {
   constructor(userRepository, sendMessage) {
     this.userRepository = userRepository;
     this.sendMessage = sendMessage;
   }
 
-  async execute(userId) {
+  async execute({ userId, status }) {
     try {
       const userExists = await this.userRepository.findById({ id: userId });
       if (!this.isUser(userExists)) {
-        this.sendMessage(JSON.stringify({ userId }));
+        this.sendMessage(AmqpQueueName.USER_NOT_CANCELED, JSON.stringify({ userId, status }));
         return false;
       }
 
-      return this.userRepository.cancelById({ id: userId });
+      return this.userRepository.setStatusById({ id: userId, status });
     } catch (errors) {
       logger.error(errors);
 
@@ -27,4 +28,4 @@ class UserDeleteService {
   }
 }
 
-module.exports = { UserDeleteService };
+module.exports = { UserCancelService };
