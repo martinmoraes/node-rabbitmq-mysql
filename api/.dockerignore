@@ -1,0 +1,17 @@
+.git
+.gitignore
+.nvmrc
+.env
+.eslintrc.js
+.prettierrc
+.dockerignore
+.env.example
+docker-compose.yml
+Dockerfile
+*.md
+test
+node_modules
+log
+coverage
+README.md
+sfc.png

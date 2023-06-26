@@ -1,4 +1,5 @@
 const fastify = require('fastify');
+const { logger } = require('./logger');
 
 class FestifyServer {
   init() {
@@ -11,7 +12,7 @@ class FestifyServer {
         console.error(err);
         process.exit(1);
       }
-      console.log(`Server is running on port ${port}`);
+      logger.info(`Server is running on port ${port}`);
     });
 
     return app;

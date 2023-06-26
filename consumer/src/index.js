@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { sequelize } = require('./infra/sequelize/connect');
 const { logger } = require('./infra/logger');
 const { AmqpServer } = require('./infra/amqpServer');
 const { UserController } = require('./user/user.controller');
@@ -8,11 +7,11 @@ const { UserController } = require('./user/user.controller');
   logger.info('Application starting');
 
   try {
-    await sequelize.authenticate();
-
+    logger.info('Amqp starting');
     const amqpChannel = await new AmqpServer().init();
 
-    new UserController(amqpChannel).init();
+    logger.info('UserController starting');
+    await new UserController(amqpChannel).init();
 
     logger.info('Success in establishing the connections');
   } catch (error) {

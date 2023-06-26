@@ -21,7 +21,6 @@ class UserRepository {
       type: Sequelize.QueryTypes.SELECT,
     });
 
-    console.log(selectResult);
     return selectResult.length > 0 ? selectResult[0] : {};
   }
 
