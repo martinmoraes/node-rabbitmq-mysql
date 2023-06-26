@@ -52,10 +52,10 @@ services:
     command: ["./wait-for-it.sh", "-t", "60000", "rabbitmq:5672", "--", "npm", "run", "start:prod"]
     environment:
       NODE_ENV: production
-      HTTP_PORT: 3000
+      HTTP_PORT: 3001
       LOG_DIR: /log
       AMQP_HOST: amqp://rabbitmq
     ports:
-      - "3000:3000"
+      - "3001:3001"
 volumes:
   rabbitmq_data:

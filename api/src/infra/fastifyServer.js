@@ -1,13 +1,13 @@
 const fastify = require('fastify');
 const { logger } = require('./logger');
 
-class FestifyServer {
+class FastifyServer {
   init() {
     const app = fastify();
 
     const port = process.env.HTTP_PORT;
 
-    app.listen({ port }, (err) => {
+    app.listen({ port, host: '0.0.0.0' }, (err) => {
       if (err) {
         console.error(err);
         process.exit(1);
@@ -19,4 +19,4 @@ class FestifyServer {
   }
 }
 
-module.exports = { FestifyServer };
+module.exports = { FastifyServer };

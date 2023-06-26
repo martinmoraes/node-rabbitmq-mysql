@@ -27,7 +27,7 @@ class UserController {
       this.channel.consume(
         AmqpQueueName.USER_CANCELLATION,
         async (msg) => {
-          const userDeleteService = new UserCancelService(
+          const userDeleteService = await new UserCancelService(
             new UserRepository(),
             this.sendMessage(this.channel),
           );

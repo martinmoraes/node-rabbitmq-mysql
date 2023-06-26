@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "72071e9d-2ee4-45ec-9611-5ce6a6b83000",
+		"name": "user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2807310"
+	},
+	"item": [
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Martin Morães\",\r\n  \"email\": \"martin@gmail.xxx\",\r\n  \"fone\": \"999999\",\r\n};"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelled",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"Cancelled\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/user/8",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"user",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Active",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/user/8",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"user",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
