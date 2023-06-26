@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { logger } = require('./infra/logger');
 const { AmqpServer } = require('./infra/amqpServer');
-const { FestifyServer: HttpServer } = require('./infra/festifyServer');
+const { FastifyServer: HttpServer } = require('./infra/fastifyServer');
 const { UserController } = require('./user/user.controller');
 
 (async () => {

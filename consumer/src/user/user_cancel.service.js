@@ -11,8 +11,10 @@ class UserCancelService {
     try {
       const userExists = await this.userRepository.findById({ id: userId });
       if (!this.isUser(userExists)) {
-        this.sendMessage(AmqpQueueName.USER_NOT_CANCELED, JSON.stringify({ userId, status }));
-        return false;
+        this.sendMessage(
+          AmqpQueueName.USER_NOT_CANCELED,
+          JSON.stringify({ userId, status, createdAt: new Date().toISOString() }),
+        );
       }
 
       return this.userRepository.setStatusById({ id: userId, status });
