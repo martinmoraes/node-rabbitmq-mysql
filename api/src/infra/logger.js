@@ -14,7 +14,10 @@ const logger = winston.createLogger({
   level: 'info',
   format: formatRules,
   transports: [
-    new winston.transports.File({ filename: path.resolve(process.env.LOG_DIR, 'error.log'), level: 'error' }),
+    new winston.transports.File({
+      filename: path.resolve(process.env.LOG_DIR, 'error.log'),
+      level: 'error',
+    }),
     new winston.transports.File({ filename: path.resolve(process.env.LOG_DIR, 'combined.log') }),
   ],
 });
